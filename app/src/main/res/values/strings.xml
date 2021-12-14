@@ -1,6 +1,7 @@
 <resources>
 <string name="app_name">Health and Life</string>
 <string name="log_in">Log in</string>
+<string name="sing_up">Sing up</string>
 <string name="login">Login</string>
 <string name="password">Password</string>
 <string name="retry">Retry</string>

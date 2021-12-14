@@ -3,6 +3,7 @@
     <string name="app_name">Здоровье и жизнь</string>
     <string name="log_in">Войти</string>
     <string name="login">Логин</string>
+    <string name="sing_up">Зарегистрироваться</string>
     <string name="password">Пароль</string>
     <string name="retry">Заново</string>
     <string name="done">Стоп</string>

@@ -1,9 +1,6 @@
 package by.iapsit.healthandlife.ui.screens.db.entity
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface UserDao {
@@ -15,9 +12,9 @@ interface UserDao {
 
     @Query("SELECT * FROM AppUser WHERE login LIKE :login AND " +
             "password LIKE :password LIMIT 1")
-    fun findByName(login: String, password: String): AppUser
+    fun findByLoginAndPassword(login: String, password: String): AppUser
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg users: AppUser)
 
     @Delete
