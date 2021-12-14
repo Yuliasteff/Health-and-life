@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Здоровье и жизнь</string>
+    <string name="log_in">Войти</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="retry">Заново</string>
+    <string name="done">Стоп</string>
+    <string name="heart_rate">Пульс:</string>
+    <string name="spo2"> % кислорода:</string>
+    <string name="temp">Температура:</string>
+    <string name="name">Иван Иванов</string>
+    <string name="address">ул.Прушинских, д.72,кв.37</string>
+    <string name="send_results">Отправить результаты</string>
+    <string name="date_of_birth">Дата рождения:</string>
+    <string name="home_address">Домашний адрес:</string>
+    <string name="female">Жен</string>
+    <string name="male">Mуж</string>
+    <string name="concomitant_diseases">Сопутствующие диагнозы</string>
+    <string name="medications">Принимаемые препораты</string>
+</resources>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="by.iapsit.healthandlife.ui.screens.main.MainViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_main_layout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Health and Life"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintBottom_toBottomOf="@id/tool_bar"
+            app:layout_constraintEnd_toEndOf="@id/tool_bar"
+            app:layout_constraintTop_toTopOf="@id/tool_bar" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/main_logo_size"
+            android:layout_height="@dimen/main_logo_size"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/retry_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:backgroundTint="@color/main_buttons"
+            android:fontFamily="@font/exo_regular"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            android:textSize="@dimen/button_text_size"
+            app:cornerRadius="@dimen/button_corner_radius"
+            app:layout_constraintEnd_toStartOf="@id/done_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/done_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/done_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/main_buttons"
+            android:fontFamily="@font/exo_regular"
+            android:text="@string/done"
+            android:textAllCaps="false"
+            android:textSize="@dimen/button_text_size"
+            app:cornerRadius="@dimen/button_corner_radius"
+            app:layout_constraintBottom_toTopOf="@id/rhythm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/retry_button"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintVertical_bias="0.229" />
+
+        <ImageView
+            android:id="@+id/rhythm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_rhythm"
+            app:layout_constraintBottom_toTopOf="@id/heart_rate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/done_button" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="94dp"
+            android:layout_height="85dp"
+            android:layout_alignTop="@+id/rhythm"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_heart"
+            app:layout_constraintBottom_toBottomOf="@id/heart_rate"
+            app:layout_constraintStart_toEndOf="@+id/heart_rate_title"
+            app:layout_constraintTop_toBottomOf="@+id/rhythm" />
+
+        <FrameLayout
+            android:id="@+id/balls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            app:layout_constraintEnd_toEndOf="@id/heart_rate"
+            app:layout_constraintStart_toStartOf="@id/heart_rate"
+            app:layout_constraintTop_toBottomOf="@id/heart_rate">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_balls" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="106dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-10dp"
+                android:src="@drawable/ic_balls_1" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/heart_rate_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/heart_rate"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_text_size_title"
+            app:layout_constraintBottom_toTopOf="@id/spo2_title"
+            app:layout_constraintEnd_toStartOf="@id/heart_rate"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rhythm"
+            app:layout_constraintVertical_bias="0.392" />
+
+        <TextView
+            android:id="@+id/heart_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{viewModel.heartRate}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rhythm"
+            tools:text="75 bpm" />
+
+        <TextView
+            android:id="@+id/spo2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/spo2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_text_size_title"
+            app:layout_constraintEnd_toStartOf="@+id/spo2"
+            app:layout_constraintHorizontal_bias="0.417"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/temperature_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/temp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_text_size_title"
+            app:layout_constraintEnd_toStartOf="@+id/temp_sensor"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spo2_title" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/power_button"
+            android:layout_marginBottom="15dp"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:backgroundTint="@color/off_button"
+            android:drawableTop="@drawable/ic_power"
+            android:fontFamily="@font/exo_regular"
+            android:textAllCaps="false"
+            android:textSize="@dimen/button_text_size_send_results"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/send_results_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/temperature_title"
+            app:layout_constraintVertical_bias="0.85" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/send_results_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:backgroundTint="@color/send_result_button"
+            android:fontFamily="@font/exo_regular"
+            android:text="@string/send_results"
+            android:textAllCaps="false"
+            android:textSize="@dimen/button_text_size_send_results"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/power_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/power_button"
+            app:layout_constraintTop_toTopOf="@id/power_button" />
+
+        <ImageView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/temp"
+            app:layout_constraintBottom_toBottomOf="@+id/temp_sensor"
+            app:layout_constraintEnd_toStartOf="@+id/temp_sensor"
+            app:layout_constraintHorizontal_bias="0.803"
+            app:layout_constraintStart_toEndOf="@+id/temperature_title"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.619" />
+
+        <TextView
+            android:id="@+id/spo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="25dp"
+            android:text="@{viewModel.spo2}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/balls"
+            app:layout_constraintEnd_toEndOf="@+id/balls"
+            app:layout_constraintHorizontal_bias="0.255"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="99%" />
+
+        <TextView
+            android:id="@+id/temp_sensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.temp}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/send_results_button"
+            app:layout_constraintEnd_toEndOf="@+id/balls"
+            app:layout_constraintHorizontal_bias="0.557"
+            app:layout_constraintStart_toStartOf="@+id/spo2"
+            app:layout_constraintTop_toBottomOf="@+id/spo2"
+            app:layout_constraintVertical_bias="0.283"
+            tools:text="36.6°C" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

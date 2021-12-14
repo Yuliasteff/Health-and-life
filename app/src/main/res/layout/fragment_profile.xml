@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_profile_layout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Health and Life"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintBottom_toBottomOf="@id/tool_bar"
+            app:layout_constraintEnd_toEndOf="@id/tool_bar"
+            app:layout_constraintTop_toTopOf="@id/tool_bar" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/main_logo_size"
+            android:layout_height="@dimen/main_logo_size"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profile_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:src="@drawable/ic_profile_icon"
+            app:layout_constraintBottom_toTopOf="@id/button_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:text="Ivanov Ivan"
+            android:textColor="@color/black"
+            android:textSize="@dimen/main_text_size_title"
+            app:layout_constraintBottom_toTopOf="@id/profile_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profile_icon" />
+
+        <TextView
+            android:id="@+id/date_of_birth_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:text="@string/date_of_birth"
+            android:textColor="@color/white"
+            android:textSize="@dimen/profile_text_size_title"
+            app:layout_constraintEnd_toEndOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@id/name" />
+
+        <TextView
+            android:id="@+id/date_of_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:text="30/04/2001"
+            android:textColor="@color/black"
+            android:textSize="@dimen/profile_text_size_data"
+            app:layout_constraintEnd_toEndOf="@id/date_of_birth_title"
+            app:layout_constraintStart_toStartOf="@id/date_of_birth_title"
+            app:layout_constraintTop_toBottomOf="@id/date_of_birth_title" />
+
+        <TextView
+            android:id="@+id/address_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/exo_regular"
+            android:text="@string/home_address"
+            android:textColor="@color/white"
+            android:textSize="@dimen/profile_text_size_title"
+            app:layout_constraintEnd_toEndOf="@id/date_of_birth"
+            app:layout_constraintStart_toStartOf="@id/date_of_birth"
+            app:layout_constraintTop_toBottomOf="@id/date_of_birth" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:text="Prushinskih st./72-37"
+            android:textColor="@color/black"
+            android:textSize="@dimen/profile_text_size_data"
+            app:layout_constraintEnd_toEndOf="@id/address_title"
+            app:layout_constraintStart_toStartOf="@id/address_title"
+            app:layout_constraintTop_toBottomOf="@id/address_title" />
+
+        <CheckBox
+            android:id="@+id/female_check_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_checkbox"
+            android:fontFamily="@font/exo_regular"
+            android:paddingLeft="10dp"
+            android:text="@string/female"
+            android:theme="@style/BrandedCheckBox"
+            app:layout_constraintBottom_toTopOf="@id/button_layout"
+            app:layout_constraintEnd_toStartOf="@id/male_check_box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_icon" />
+
+
+        <CheckBox
+            android:id="@+id/male_check_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_checkbox"
+            android:fontFamily="@font/exo_regular"
+            android:paddingLeft="10dp"
+            android:text="@string/male"
+            android:theme="@style/BrandedCheckBox"
+            app:layout_constraintBottom_toTopOf="@id/button_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/female_check_box"
+            app:layout_constraintTop_toBottomOf="@id/profile_icon" />
+
+        <FrameLayout
+            android:id="@+id/button_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/phone_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/female_check_box">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/concomitant_diseases_button"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/login_input_filed_text"
+                android:fontFamily="@font/exo_regular"
+                android:text="@string/concomitant_diseases"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/medications_button"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="70dp"
+                android:backgroundTint="@color/login_input_filed_text"
+                android:fontFamily="@font/exo_regular"
+                android:text="@string/medications"
+                android:textColor="@color/black" />
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/phone_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/email_layout"
+            app:layout_constraintStart_toStartOf="@id/email_layout"
+            app:layout_constraintTop_toBottomOf="@id/button_layout">
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/exo_regular"
+                android:paddingBottom="5dp"
+                android:text="+375448761055 "
+                android:textColor="@color/white"
+                android:textSize="@dimen/profile_text_size_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/phone_icon" />
+
+            <ImageView
+                android:id="@+id/phone_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintBottom_toBottomOf="@id/phone"
+                app:layout_constraintEnd_toStartOf="@id/phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/phone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/email_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phone_layout">
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/exo_regular"
+                android:paddingBottom="5dp"
+                android:text="Ivanov2001@gmail.com"
+                android:textColor="@color/white"
+                android:textSize="@dimen/profile_text_size_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/email_icon" />
+
+            <ImageView
+                android:id="@+id/email_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_email"
+                app:layout_constraintBottom_toBottomOf="@id/email"
+                app:layout_constraintEnd_toStartOf="@id/email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/email" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

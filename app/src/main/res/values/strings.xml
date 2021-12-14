@@ -1,0 +1,20 @@
+<resources>
+<string name="app_name">Health and Life</string>
+<string name="log_in">Log in</string>
+<string name="login">Login</string>
+<string name="password">Password</string>
+<string name="retry">Retry</string>
+<string name="done">Done</string>
+<string name="heart_rate">Heart rate:</string>
+<string name="spo2">SpO2:</string>
+<string name="temp">Temperature:</string>
+<string name="name">Ivan Ivanov</string>
+<string name="address">Prushinskih St./ 72-37</string>
+<string name="send_results">Send Results</string>
+<string name="date_of_birth">Date of birth:</string>
+<string name="home_address">Home address:</string>
+<string name="female">Female</string>
+<string name="male">Male</string>
+<string name="concomitant_diseases">Concomitant diseases</string>
+<string name="medications">Medications</string>
+</resources>

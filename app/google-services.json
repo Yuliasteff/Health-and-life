@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "928880779307",
+    "project_id": "health-and-life-788a3",
+    "storage_bucket": "health-and-life-788a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928880779307:android:b56d41545cb3bfba440a6e",
+        "android_client_info": {
+          "package_name": "by.iapsit.healthandlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928880779307-tst02jrk3o8169pspc0neldqlcdidfdh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "by.iapsit.healthandlife",
+            "certificate_hash": "ae0d67cc0ca63b90e5c956141e69f82e7cb02f40"
+          }
+        },
+        {
+          "client_id": "928880779307-o4sne4h8151l6bkh70pp4av9j0sd85re.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA48qnQ2itQ-jlK_C4JBUvwcyoMbaLXfhw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928880779307-o4sne4h8151l6bkh70pp4av9j0sd85re.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

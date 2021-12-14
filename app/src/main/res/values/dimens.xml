@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_logo_size">250dp</dimen>
+    <dimen name="input_corner_radius">7dp</dimen>
+    <dimen name="login_text_size">20sp</dimen>
+    <dimen name="button_text_size">28sp</dimen>
+    <dimen name="button_corner_radius">10dp</dimen>
+    <dimen name="main_text_size">50sp</dimen>
+    <dimen name="main_text_size_title">30sp</dimen>
+    <dimen name="button_width">150dp</dimen>
+    <dimen name="button_height">70dp</dimen>
+    <dimen name="button_text_size_send_results">18sp</dimen>
+    <dimen name="main_logo_size">75dp</dimen>
+    <dimen name="profile_text_size_title">20sp</dimen>
+    <dimen name="profile_text_size_data">15sp</dimen>
+</resources>
