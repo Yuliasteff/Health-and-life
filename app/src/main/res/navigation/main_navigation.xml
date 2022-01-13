@@ -7,13 +7,40 @@
 
     <fragment
         android:id="@+id/login_destination"
-        android:name="by.iapsit.healthandlife.ui.screens.login.LoginFragment"
+        android:name="by.iapsit.healthandlife.ui.screens.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
 
         <action
             android:id="@+id/action_login_to_main"
             app:destination="@id/main_destination" />
+
+        <action
+            android:id="@+id/action_login_to_sing_up"
+            app:destination="@id/sing_up_destination"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/sing_up_destination"
+        android:name="by.iapsit.healthandlife.ui.screens.fragments.SingUpFragment"
+        android:label="fragment_sing_up"
+        tools:layout="@layout/fragment_sing_up">
+
+        <action
+            android:id="@+id/action_sing_up_to_main"
+            app:destination="@id/main_destination" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_data_destination"
+        android:name="by.iapsit.healthandlife.ui.screens.fragments.UserDataFragment"
+        android:label="fragment_user_data"
+        tools:layout="@layout/fragment_user_data">
+
+        <action
+            android:id="@+id/action_user_data_to_profile"
+            app:destination="@id/profile_destination"/>
     </fragment>
 
     <fragment
@@ -29,13 +56,17 @@
 
     <fragment
         android:id="@+id/profile_destination"
-        android:name="by.iapsit.healthandlife.ui.screens.profile.ProfileFragment"
+        android:name="by.iapsit.healthandlife.ui.screens.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
 
         <action
             android:id="@+id/action_profile_to_main"
             app:destination="@id/main_destination" />
+
+        <action
+            android:id="@+id/action_profile_to_user_data"
+            app:destination="@id/user_data_destination"/>
     </fragment>
 
 </navigation>

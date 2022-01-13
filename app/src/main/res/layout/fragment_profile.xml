@@ -28,8 +28,8 @@
             android:layout_marginEnd="10dp"
             android:src="@drawable/ic_menu"
             app:layout_constraintBottom_toBottomOf="@id/tool_bar"
-            app:layout_constraintEnd_toEndOf="@id/tool_bar"
-            app:layout_constraintTop_toTopOf="@id/tool_bar" />
+            app:layout_constraintTop_toTopOf="@id/tool_bar"
+            app:layout_constraintEnd_toEndOf="@id/tool_bar"/>
 
         <ImageView
             android:id="@+id/logo"
@@ -37,9 +37,9 @@
             android:layout_height="@dimen/main_logo_size"
             android:layout_marginTop="15dp"
             android:src="@drawable/logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/tool_bar"
+            app:layout_constraintStart_toStartOf="@id/tool_bar"
+            app:layout_constraintTop_toTopOf="@id/tool_bar" />
 
         <ImageView
             android:id="@+id/profile_icon"
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:button="@drawable/selector_checkbox"
             android:fontFamily="@font/exo_regular"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:text="@string/male"
             android:theme="@style/BrandedCheckBox"
             app:layout_constraintBottom_toTopOf="@id/button_layout"
@@ -151,23 +151,12 @@
             app:layout_constraintTop_toBottomOf="@id/female_check_box">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/concomitant_diseases_button"
+                android:id="@+id/user_data_button"
                 android:layout_width="275dp"
                 android:layout_height="60dp"
                 android:backgroundTint="@color/login_input_filed_text"
                 android:fontFamily="@font/exo_regular"
-                android:text="@string/concomitant_diseases"
-                android:textColor="@color/black" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/medications_button"
-                android:layout_width="275dp"
-                android:layout_height="60dp"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="70dp"
-                android:backgroundTint="@color/login_input_filed_text"
-                android:fontFamily="@font/exo_regular"
-                android:text="@string/medications"
+                android:text="@string/detailed_information"
                 android:textColor="@color/black" />
 
         </FrameLayout>

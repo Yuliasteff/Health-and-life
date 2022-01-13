@@ -2,9 +2,18 @@
 <resources>
     <string name="app_name">Здоровье и жизнь</string>
     <string name="log_in">Войти</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="gender">Пол</string>
+    <string name="weight">Вес</string>
+    <string name="concomitant_diseases">Cопутствующие заболевания</string>
+    <string name="phone_number">Телефон</string>
+    <string name="email">Электронная почта</string>
     <string name="login">Логин</string>
     <string name="sing_up">Зарегистрироваться</string>
+    <string name="save">Сохранить</string>
     <string name="password">Пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
     <string name="retry">Заново</string>
     <string name="done">Стоп</string>
     <string name="heart_rate">Пульс:</string>
@@ -17,6 +26,6 @@
     <string name="home_address">Домашний адрес:</string>
     <string name="female">Жен</string>
     <string name="male">Mуж</string>
-    <string name="concomitant_diseases">Сопутствующие диагнозы</string>
+    <string name="detailed_information">Сопутствующие диагнозы</string>
     <string name="medications">Принимаемые препораты</string>
 </resources>

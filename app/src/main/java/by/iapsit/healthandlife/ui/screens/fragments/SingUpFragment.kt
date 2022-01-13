@@ -1,7 +1,6 @@
-package by.iapsit.healthandlife.ui.screens.login
+package by.iapsit.healthandlife.ui.screens.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,41 +10,31 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import by.iapsit.healthandlife.R
-import by.iapsit.healthandlife.databinding.FragmentLoginBinding
+import by.iapsit.healthandlife.databinding.FragmentSingUpBinding
 import by.iapsit.healthandlife.ui.screens.db.entity.AppDatabase
 import by.iapsit.healthandlife.ui.screens.db.entity.AppUser
 import by.iapsit.healthandlife.ui.screens.db.entity.PredefinedUsers
 import by.iapsit.healthandlife.ui.screens.db.entity.UserDao
-import by.iapsit.healthandlife.utils.Constants
 
-class LoginFragment : Fragment() {
+class SingUpFragment : Fragment() {
 
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentSingUpBinding
     private var db: AppDatabase? = null
     private var userDao: UserDao? = null
+    private val CURRENT_USER_KEY = "CURRENT_USER"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sing_up, container, false)
 
         binding.singUpButton.setOnClickListener {
-            val loginField = binding.loginInputField.editText
-            val passwordField = binding.passwordInputField.editText
-            registerUser(
-                loginField?.text.toString(),
-                passwordField?.text.toString()
-            )
-            loginField?.setText("")
-            passwordField?.setText("")
-        }
-
-        binding.loginButton.setOnClickListener {
-            val login: String = binding.loginInputField.editText?.text.toString()
-            val password: String = binding.passwordInputField.editText?.text.toString()
-            authenticateUser(login, password)
+            val login: String = binding.loginField.editText?.text.toString()
+            val password: String = binding.passwordField.editText?.text.toString()
+            registerUser(login, password)
+            findNavController().navigate(SingUpFragmentDirections.actionSingUpToMain())
         }
 
         db = Room.databaseBuilder(
@@ -57,15 +46,15 @@ class LoginFragment : Fragment() {
             .build()
 
         userDao = db?.userDao()
-        PredefinedUsers.users.forEach {
-            user -> userDao?.insertAll(user)
+        PredefinedUsers.users.forEach { user ->
+            userDao?.insertAll(user)
         }
 
         return binding.root
     }
 
     private fun registerUser(login: String?, password: String?) {
-        if(login != null && password != null && login.isNotEmpty() && password.isNotEmpty()) {
+        if (login != null && password != null && login.isNotEmpty() && password.isNotEmpty()) {
             val userToCreate = AppUser(login, password)
             userDao?.insertAll(userToCreate)
         } else {
@@ -75,14 +64,6 @@ class LoginFragment : Fragment() {
                 Toast.LENGTH_LONG
             )
             invalidInputToast.show()
-        }
-
-    }
-
-    private fun authenticateUser(login: String, password: String) {
-        val userToAuth = userDao?.findByLoginAndPassword(login, password)
-        if(userToAuth != null) {
-            findNavController().navigate(LoginFragmentDirections.actionLoginToMain())
         }
     }
 }

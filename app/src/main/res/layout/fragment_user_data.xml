@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_profile_layout">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/toolbar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="Health and Life"
+                app:titleTextAppearance="@style/Toolbar.TitleText"
+                app:titleTextColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/profile_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintBottom_toBottomOf="@id/tool_bar"
+                app:layout_constraintEnd_toEndOf="@id/tool_bar"
+                app:layout_constraintTop_toTopOf="@id/tool_bar" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/main_logo_size"
+                android:layout_height="@dimen/main_logo_size"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/logo"
+                app:layout_constraintEnd_toEndOf="@id/tool_bar"
+                app:layout_constraintStart_toStartOf="@id/tool_bar"
+                app:layout_constraintTop_toTopOf="@id/tool_bar" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/first_name_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/first_name"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/last_name_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/first_name_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/last_name"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/date_of_birth_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/last_name_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/date_of_birth"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/gender_radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/date_of_birth_field"
+                app:layout_constraintTop_toBottomOf="@id/date_of_birth_field"
+                >
+
+                <RadioButton
+                    android:id="@+id/male_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selector_checkbox"
+                    android:fontFamily="@font/exo_regular"
+                    android:paddingStart="10dp"
+                    android:text="@string/male"
+                    android:textSize="15sp"
+                    android:theme="@style/BrandedCheckBox"
+                    />
+
+                <RadioButton
+                    android:id="@+id/female_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selector_checkbox"
+                    android:fontFamily="@font/exo_regular"
+                    android:paddingStart="10dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/female"
+                    android:textSize="15sp"
+                    android:theme="@style/BrandedCheckBox"
+                    app:layout_constraintBottom_toBottomOf="@id/male_check_box"
+                    app:layout_constraintEnd_toEndOf="@id/date_of_birth_field"
+                    app:layout_constraintStart_toEndOf="@id/male_check_box" />
+
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/weight_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gender_radio_group">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/weight"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/concomitant_diseases_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weight_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/concomitant_diseases"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/medications_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weight_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/medications"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/medications_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/phone_number"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_field"
+                android:layout_width="275dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/input_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/input_corner_radius"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/login_input_filed_text"
+                    android:fontFamily="@font/exo_regular"
+                    android:hint="@string/email"
+                    android:maxLines="1"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/login_text_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_button"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:backgroundTint="@color/login_button"
+                android:fontFamily="@font/exo_regular"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_text_size"
+                app:cornerRadius="@dimen/button_corner_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/email_field"
+                app:layout_constraintStart_toStartOf="@id/email_field"
+                app:layout_constraintTop_toBottomOf="@id/email_field" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

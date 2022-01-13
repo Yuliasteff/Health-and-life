@@ -1,4 +1,4 @@
-package by.iapsit.healthandlife.ui.screens.profile
+package by.iapsit.healthandlife.ui.screens.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +23,10 @@ class ProfileFragment : Fragment() {
 
         binding.profileButton.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileToMain())
+        }
+
+        binding.userDataButton.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileToUserData())
         }
 
         return binding.root
