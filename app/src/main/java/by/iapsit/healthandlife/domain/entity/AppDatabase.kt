@@ -1,4 +1,4 @@
-package by.iapsit.healthandlife.ui.screens.db.entity
+package by.iapsit.healthandlife.domain.entity
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

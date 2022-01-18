@@ -27,8 +27,8 @@
         tools:layout="@layout/fragment_sing_up">
 
         <action
-            android:id="@+id/action_sing_up_to_main"
-            app:destination="@id/main_destination" />
+            android:id="@+id/action_sing_up_to_login"
+            app:destination="@id/login_destination" />
 
     </fragment>
 

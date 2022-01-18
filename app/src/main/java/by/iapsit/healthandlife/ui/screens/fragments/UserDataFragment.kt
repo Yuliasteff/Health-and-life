@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import by.iapsit.healthandlife.R
 import by.iapsit.healthandlife.databinding.FragmentUserDataBinding
-import by.iapsit.healthandlife.ui.screens.db.entity.AppDatabase
-import by.iapsit.healthandlife.ui.screens.db.entity.AppUser
-import by.iapsit.healthandlife.ui.screens.db.entity.UserDao
+import by.iapsit.healthandlife.domain.entity.AppDatabase
+import by.iapsit.healthandlife.domain.entity.AppUser
+import by.iapsit.healthandlife.domain.entity.Gender
+import by.iapsit.healthandlife.domain.entity.UserDao
+import java.time.LocalDate
 
 class UserDataFragment : Fragment() {
     private val CURRENT_USER_KEY = "CURRENT_USER"
@@ -61,7 +63,8 @@ class UserDataFragment : Fragment() {
     private fun fillUserDataFields(userFromDb: AppUser) {
         binding.firstNameField.editText?.setText(userFromDb.firstName)
         binding.lastNameField.editText?.setText(userFromDb.lastName)
-        binding.dateOfBirthField.editText?.setText(userFromDb.dateOfBirth)
+        val dateOfBirth = LocalDate.ofEpochDay(userFromDb.dateOfBirth)
+        binding.dateOfBirthField.editText?.setText(dateOfBirth.toString())
         setUserGenderField(userFromDb)
         binding.weightField.editText?.setText(userFromDb.weight)
         binding.phoneField.editText?.setText(userFromDb.phoneNumber)
@@ -73,8 +76,8 @@ class UserDataFragment : Fragment() {
         val femaleCheckbox = binding.femaleCheckBox
 
         when (userFromDb.gender) {
-            "Male" -> maleCheckbox.isChecked = true
-            "Female" -> femaleCheckbox.isChecked = true
+            Gender.MALE -> maleCheckbox.isChecked = true
+            Gender.FEMALE -> femaleCheckbox.isChecked = true
         }
     }
 
@@ -92,16 +95,16 @@ class UserDataFragment : Fragment() {
     private fun mapInputDataToAppUser(userFromDb: AppUser): AppUser {
         val firstName = binding.firstNameField.editText?.text.toString()
         val lastName = binding.lastNameField.editText?.text.toString()
-        val dateOfBirth = binding.dateOfBirthField.editText?.text.toString()
+        val dateOfBirth = binding.dateOfBirthField.editText?.text.toString().toLong()
         val gender = getUserGender()
-        val weight = binding.weightField.editText?.text.toString()
+        val weight = binding.weightField.editText?.text.toString().toInt()
         val phoneNumber = binding.phoneField.editText?.text.toString()
         val email = binding.emailField.editText?.text.toString()
 
         return AppUser(
             id = userFromDb.id,
-            login = userFromDb.login!!,
-            password = userFromDb.password!!,
+            login = userFromDb.login,
+            password = userFromDb.password,
             firstName = firstName,
             lastName = lastName,
             dateOfBirth = dateOfBirth,
@@ -118,14 +121,14 @@ class UserDataFragment : Fragment() {
         return sharedPreferences.getString(CURRENT_USER_KEY, DEFAULT_LOGIN) ?: return DEFAULT_LOGIN
     }
 
-    private fun getUserGender(): String {
+    private fun getUserGender(): Gender {
         val maleCheckbox = binding.maleCheckBox
         val femaleCheckbox = binding.femaleCheckBox
 
         return when {
-            maleCheckbox.isChecked -> maleCheckbox.text.toString()
-            femaleCheckbox.isChecked -> femaleCheckbox.text.toString()
-            else -> ""
+            maleCheckbox.isChecked -> Gender.MALE
+            femaleCheckbox.isChecked -> Gender.MALE
+            else -> Gender.EMPTY
         }
     }
 }

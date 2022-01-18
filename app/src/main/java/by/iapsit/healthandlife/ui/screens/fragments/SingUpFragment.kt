@@ -1,6 +1,7 @@
 package by.iapsit.healthandlife.ui.screens.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +12,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import by.iapsit.healthandlife.R
 import by.iapsit.healthandlife.databinding.FragmentSingUpBinding
-import by.iapsit.healthandlife.ui.screens.db.entity.AppDatabase
-import by.iapsit.healthandlife.ui.screens.db.entity.AppUser
-import by.iapsit.healthandlife.ui.screens.db.entity.PredefinedUsers
-import by.iapsit.healthandlife.ui.screens.db.entity.UserDao
+import by.iapsit.healthandlife.domain.dto.RegistrationRequest
+import by.iapsit.healthandlife.domain.entity.AppDatabase
+import by.iapsit.healthandlife.domain.entity.AppUser
+import by.iapsit.healthandlife.domain.entity.PredefinedUsers
+import by.iapsit.healthandlife.domain.entity.UserDao
+import by.iapsit.healthandlife.domain.model.User
+import by.iapsit.healthandlife.service.api.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SingUpFragment : Fragment() {
+    private val CURRENT_USER_KEY = "CURRENT_USER"
+    private val REGISTRATION_ERROR_MESSAGE = "Error occurred during registration"
 
     private lateinit var binding: FragmentSingUpBinding
-    private var db: AppDatabase? = null
-    private var userDao: UserDao? = null
-    private val CURRENT_USER_KEY = "CURRENT_USER"
+    private lateinit var apiClient: ApiClient
+    private lateinit var db: AppDatabase
+    private lateinit var userDao: UserDao
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,8 +42,8 @@ class SingUpFragment : Fragment() {
         binding.singUpButton.setOnClickListener {
             val login: String = binding.loginField.editText?.text.toString()
             val password: String = binding.passwordField.editText?.text.toString()
-            registerUser(login, password)
-            findNavController().navigate(SingUpFragmentDirections.actionSingUpToMain())
+            val confirmPassword: String = binding.confirmPasswordField.editText?.text.toString()
+            registerUser(login, password, confirmPassword)
         }
 
         db = Room.databaseBuilder(
@@ -45,25 +54,43 @@ class SingUpFragment : Fragment() {
             .allowMainThreadQueries()
             .build()
 
-        userDao = db?.userDao()
-        PredefinedUsers.users.forEach { user ->
-            userDao?.insertAll(user)
-        }
+        userDao = db.userDao()
+
+        apiClient = ApiClient()
 
         return binding.root
     }
 
-    private fun registerUser(login: String?, password: String?) {
-        if (login != null && password != null && login.isNotEmpty() && password.isNotEmpty()) {
-            val userToCreate = AppUser(login, password)
-            userDao?.insertAll(userToCreate)
+    private fun registerUser(email: String?, password: String?, confirmPassword: String?) {
+        if (email != null && email.isNotEmpty() &&
+            password != null && password.isNotEmpty() &&
+            confirmPassword != null && confirmPassword.isNotEmpty()
+            && isPasswordsEqual(password, confirmPassword)
+        ) {
+            apiClient.getAuthService()
+                .registration(RegistrationRequest(email, password, confirmPassword)).enqueue(object : Callback<User> {
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+                        if(response.code() == 200) {
+                            findNavController().navigate(SingUpFragmentDirections.actionSingUpToLogin())
+                        }
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        Log.e("Api call error", t.localizedMessage.toString())
+                        Toast.makeText(requireContext(), REGISTRATION_ERROR_MESSAGE, Toast.LENGTH_LONG).show()
+                    }
+                })
         } else {
             val invalidInputToast = Toast.makeText(
                 requireActivity().applicationContext,
-                "Login and Password fields in mandatory",
+                "Login and Password fields is mandatory",
                 Toast.LENGTH_LONG
             )
             invalidInputToast.show()
         }
+    }
+
+    private fun isPasswordsEqual(password: String?, confirmPassword: String?) : Boolean {
+        return password?.equals(confirmPassword)!!
     }
 }

@@ -1,7 +1,7 @@
-package by.iapsit.healthandlife.ui.screens.db.entity
+package by.iapsit.healthandlife.domain.entity
 
 object PredefinedUsers {
-    val users = listOf(
+/*    val users = listOf(
         AppUser(
             id = 0,
             login = "julia",
@@ -26,5 +26,5 @@ object PredefinedUsers {
             phoneNumber = "+375291111111",
             email = "ivan.example@gmail.com"
         )
-    )
+    )*/
 }

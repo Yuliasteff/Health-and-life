@@ -1,7 +1,7 @@
 package by.iapsit.healthandlife.ui.screens.fragments
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +12,30 @@ import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import by.iapsit.healthandlife.R
 import by.iapsit.healthandlife.databinding.FragmentLoginBinding
-import by.iapsit.healthandlife.ui.screens.db.entity.AppDatabase
-import by.iapsit.healthandlife.ui.screens.db.entity.AppUser
-import by.iapsit.healthandlife.ui.screens.db.entity.PredefinedUsers
-import by.iapsit.healthandlife.ui.screens.db.entity.UserDao
+import by.iapsit.healthandlife.domain.dto.AuthenticationRequest
+import by.iapsit.healthandlife.domain.dto.AuthenticationResponse
+import by.iapsit.healthandlife.domain.entity.AppDatabase
+import by.iapsit.healthandlife.domain.entity.PredefinedUsers
+import by.iapsit.healthandlife.domain.entity.UserDao
+import by.iapsit.healthandlife.service.api.ApiClient
+import by.iapsit.healthandlife.service.api.SessionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginFragment : Fragment() {
 
+    companion object {
+        val AUTH_ERROR_MESSAGE = "Invalid email or password"
+    }
+
     private lateinit var binding: FragmentLoginBinding
-    private var db: AppDatabase? = null
-    private var userDao: UserDao? = null
-    private val CURRENT_USER_KEY = "CURRENT_USER"
+    private lateinit var sessionManager: SessionManager
+    private lateinit var apiClient: ApiClient
+
+    private lateinit var db: AppDatabase
+    private lateinit var userDao: UserDao
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,23 +62,34 @@ class LoginFragment : Fragment() {
             .allowMainThreadQueries()
             .build()
 
-        userDao = db?.userDao()
-        PredefinedUsers.users.forEach {
-            user -> userDao?.insertAll(user)
-        }
+        userDao = db.userDao()
+
+        apiClient = ApiClient()
+        sessionManager = SessionManager(requireContext())
 
         return binding.root
     }
 
-    private fun authenticateUser(login: String, password: String) {
-        val userToAuth = userDao?.findByLoginAndPassword(login, password)
-        if(userToAuth != null) {
-            val sharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-            with(sharedPreferences.edit()) {
-                putString(CURRENT_USER_KEY, userToAuth.login)
-                apply()
-            }
-            findNavController().navigate(LoginFragmentDirections.actionLoginToMain())
-        }
+    private fun authenticateUser(email: String, password: String) {
+        apiClient.getAuthService().login(AuthenticationRequest(email, password))
+            .enqueue(object : Callback<AuthenticationResponse> {
+                override fun onResponse(
+                    call: Call<AuthenticationResponse>,
+                    response: Response<AuthenticationResponse>
+                ) {
+                    val authResponseBody = response.body()
+                    if(authResponseBody != null) {
+                        sessionManager.saveAuthToken(authResponseBody.token)
+                        sessionManager.saveCurrentUserEmail(email)
+                        findNavController().navigate(LoginFragmentDirections.actionLoginToMain())
+                    }
+                }
+
+                override fun onFailure(call: Call<AuthenticationResponse>, t: Throwable) {
+                    Log.e("Api call error", t.localizedMessage.toString())
+                    Toast.makeText(requireContext(), AUTH_ERROR_MESSAGE, Toast.LENGTH_LONG).show()
+                }
+            })
+
     }
 }
