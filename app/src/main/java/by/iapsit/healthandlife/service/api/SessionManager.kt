@@ -25,6 +25,10 @@ class SessionManager(context: Context) {
         return prefs.getString(USER_TOKEN, null)
     }
 
+    fun getCurrentUserEmail(): String? {
+        return prefs.getString(CURRENT_USER_EMAIL, null)
+    }
+
     fun saveCurrentUserEmail(userEmail: String) {
         val editor = prefs.edit()
         editor.putString(CURRENT_USER_EMAIL, userEmail)

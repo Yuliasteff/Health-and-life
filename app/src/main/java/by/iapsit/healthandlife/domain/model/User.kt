@@ -15,5 +15,5 @@ data class User(
     val email: String,
     val heartRate: Int,
     val saturation: Int,
-    val temperature: Int
+    val temperature: Double
 )
