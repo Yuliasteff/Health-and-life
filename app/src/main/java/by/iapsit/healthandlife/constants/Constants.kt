@@ -1,4 +1,4 @@
-package by.iapsit.healthandlife.utils
+package by.iapsit.healthandlife.constants
 
 object Constants {
 

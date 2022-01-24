@@ -14,9 +14,8 @@ import by.iapsit.healthandlife.R
 import by.iapsit.healthandlife.databinding.FragmentLoginBinding
 import by.iapsit.healthandlife.domain.dto.AuthenticationRequest
 import by.iapsit.healthandlife.domain.dto.AuthenticationResponse
-import by.iapsit.healthandlife.domain.entity.AppDatabase
-import by.iapsit.healthandlife.domain.entity.PredefinedUsers
-import by.iapsit.healthandlife.domain.entity.UserDao
+import by.iapsit.healthandlife.db.AppDatabase
+import by.iapsit.healthandlife.db.UserDao
 import by.iapsit.healthandlife.service.api.ApiClient
 import by.iapsit.healthandlife.service.api.SessionManager
 import retrofit2.Call

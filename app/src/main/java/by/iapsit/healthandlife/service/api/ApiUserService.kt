@@ -1,8 +1,8 @@
 package by.iapsit.healthandlife.service.api
 
 import by.iapsit.healthandlife.domain.dto.UpdateUserRequest
-import by.iapsit.healthandlife.domain.model.User
-import by.iapsit.healthandlife.utils.Constants
+import by.iapsit.healthandlife.domain.dto.User
+import by.iapsit.healthandlife.constants.Constants
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -14,6 +14,6 @@ interface ApiUserService {
 
     @GET(Constants.USERS_URL)
     @Headers("Content-type: application/json; charset=UTF-8")
-    fun getUser(@Header("Authorization") authHeader: String, userEmail: String) : Call<User>
+    fun getUser(@Header("Authorization") authHeader: String, @Query("email") userEmail: String) : Call<User>
 
 }

@@ -1,6 +1,6 @@
 package by.iapsit.healthandlife.service.api
 
-import by.iapsit.healthandlife.utils.Constants
+import by.iapsit.healthandlife.constants.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -3,7 +3,6 @@ package by.iapsit.healthandlife.service.api
 import android.content.Context
 import android.content.SharedPreferences
 import by.iapsit.healthandlife.R
-import by.iapsit.healthandlife.domain.entity.AppUser
 
 class SessionManager(context: Context) {
 

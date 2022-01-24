@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import by.iapsit.healthandlife.R
 import by.iapsit.healthandlife.databinding.FragmentUserDataBinding
-import by.iapsit.healthandlife.domain.entity.AppDatabase
-import by.iapsit.healthandlife.domain.entity.AppUser
+import by.iapsit.healthandlife.db.AppDatabase
+import by.iapsit.healthandlife.domain.entity.UserEntity
 import by.iapsit.healthandlife.domain.entity.Gender
-import by.iapsit.healthandlife.domain.entity.UserDao
+import by.iapsit.healthandlife.db.UserDao
 import java.time.LocalDate
 
 class UserDataFragment : Fragment() {
@@ -53,29 +53,29 @@ class UserDataFragment : Fragment() {
 
         val currentUserLogin = getCurrentUserLogin()
 
-        val userFromDb = userDao?.findByLogin(currentUserLogin)
+        val userFromDb = userDao?.findByEmail(currentUserLogin)
         if (userFromDb != null) {
             fillUserDataFields(userFromDb)
         }
 
     }
 
-    private fun fillUserDataFields(userFromDb: AppUser) {
-        binding.firstNameField.editText?.setText(userFromDb.firstName)
-        binding.lastNameField.editText?.setText(userFromDb.lastName)
-        val dateOfBirth = LocalDate.ofEpochDay(userFromDb.dateOfBirth)
+    private fun fillUserDataFields(userEntityFromDb: UserEntity) {
+        binding.firstNameField.editText?.setText(userEntityFromDb.firstName)
+        binding.lastNameField.editText?.setText(userEntityFromDb.lastName)
+        val dateOfBirth = userEntityFromDb.dateOfBirth?.let { LocalDate.ofEpochDay(it) }
         binding.dateOfBirthField.editText?.setText(dateOfBirth.toString())
-        setUserGenderField(userFromDb)
-        binding.weightField.editText?.setText(userFromDb.weight)
-        binding.phoneField.editText?.setText(userFromDb.phoneNumber)
-        binding.emailField.editText?.setText(userFromDb.email)
+        setUserGenderField(userEntityFromDb)
+        binding.weightField.editText?.setText(userEntityFromDb.weight!!)
+        binding.phoneField.editText?.setText(userEntityFromDb.phoneNumber)
+        binding.emailField.editText?.setText(userEntityFromDb.email)
     }
 
-    private fun setUserGenderField(userFromDb: AppUser) {
+    private fun setUserGenderField(userEntityFromDb: UserEntity) {
         val maleCheckbox = binding.maleCheckBox
         val femaleCheckbox = binding.femaleCheckBox
 
-        when (userFromDb.gender) {
+        when (userEntityFromDb.gender) {
             Gender.MALE -> maleCheckbox.isChecked = true
             Gender.FEMALE -> femaleCheckbox.isChecked = true
         }
@@ -84,7 +84,7 @@ class UserDataFragment : Fragment() {
     private fun updateUserData() {
         val currentUserLogin = getCurrentUserLogin()
         if (currentUserLogin != DEFAULT_LOGIN) {
-            val userFromDb = userDao?.findByLogin(currentUserLogin)
+            val userFromDb = userDao?.findByEmail(currentUserLogin)
             if (userFromDb != null) {
                 val userToUpdate = mapInputDataToAppUser(userFromDb)
                 userDao?.update(userToUpdate)
@@ -92,7 +92,7 @@ class UserDataFragment : Fragment() {
         }
     }
 
-    private fun mapInputDataToAppUser(userFromDb: AppUser): AppUser {
+    private fun mapInputDataToAppUser(userEntityFromDb: UserEntity): UserEntity {
         val firstName = binding.firstNameField.editText?.text.toString()
         val lastName = binding.lastNameField.editText?.text.toString()
         val dateOfBirth = binding.dateOfBirthField.editText?.text.toString().toLong()
@@ -101,17 +101,20 @@ class UserDataFragment : Fragment() {
         val phoneNumber = binding.phoneField.editText?.text.toString()
         val email = binding.emailField.editText?.text.toString()
 
-        return AppUser(
-            id = userFromDb.id,
-            login = userFromDb.login,
-            password = userFromDb.password,
+        return UserEntity(
+            id = userEntityFromDb.id,
+            login = userEntityFromDb.login,
+            password = userEntityFromDb.password,
             firstName = firstName,
             lastName = lastName,
             dateOfBirth = dateOfBirth,
             gender = gender,
             weight = weight,
             phoneNumber = phoneNumber,
-            email = email
+            email = email,
+            heartRate = userEntityFromDb.heartRate,
+            saturation = userEntityFromDb.saturation,
+            temperature = userEntityFromDb.temperature
         )
     }
 
