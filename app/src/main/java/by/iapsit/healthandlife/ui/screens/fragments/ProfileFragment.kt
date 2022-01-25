@@ -1,6 +1,7 @@
 package by.iapsit.healthandlife.ui.screens.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,9 +75,12 @@ class ProfileFragment : Fragment() {
                     val userToDisplay = response.body()
                     if(userToDisplay != null) {
                         displayUserData(userToDisplay)
+                        userDao.insertAll(userMapper.toEntity(userToDisplay))
                     }
                 }
                 override fun onFailure(call: Call<User>, t: Throwable) {
+                    println("Request: ${call.request().body}" )
+                    Log.e("ERROR", t.stackTraceToString())
                     Toast.makeText(requireContext(), t.localizedMessage, Toast.LENGTH_SHORT).show()
                     displayUserData(getDefaultUser())
                 }

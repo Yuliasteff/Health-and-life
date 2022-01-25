@@ -1,5 +1,6 @@
 package by.iapsit.healthandlife.domain.util
 
+import by.iapsit.healthandlife.domain.dto.UpdateUserRequest
 import by.iapsit.healthandlife.domain.dto.User
 import by.iapsit.healthandlife.domain.entity.UserEntity
 import java.time.LocalDate
@@ -19,7 +20,8 @@ class UserMapper : GenericMapper<UserEntity, User> {
             weight = userEntity.weight,
             heartRate = userEntity.heartRate,
             saturation = userEntity.saturation,
-            temperature = userEntity.temperature
+            temperature = userEntity.temperature,
+            medications = userEntity.medications
         )
     }
 
@@ -37,7 +39,25 @@ class UserMapper : GenericMapper<UserEntity, User> {
             weight = user.weight,
             heartRate = user.heartRate,
             saturation = user.saturation,
-            temperature = user.temperature
+            temperature = user.temperature,
+            medications = user.medications
+        )
+    }
+
+    fun toUpdateRequest(userEntity: UserEntity): UpdateUserRequest {
+        return UpdateUserRequest(
+            login = userEntity.login,
+            email = userEntity.email,
+            firstName = userEntity.firstName,
+            lastName = userEntity.lastName,
+            dateOfBirth = userEntity.dateOfBirth?.let { LocalDate.ofEpochDay(it) },
+            gender = userEntity.gender,
+            phoneNumber = userEntity.phoneNumber,
+            weight = userEntity.weight,
+            heartRate = userEntity.heartRate,
+            saturation = userEntity.saturation,
+            temperature = userEntity.temperature,
+            medications = userEntity.medications
         )
     }
 }

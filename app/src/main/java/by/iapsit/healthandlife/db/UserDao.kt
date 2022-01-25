@@ -19,7 +19,7 @@ interface UserDao {
     @Query("SELECT * FROM UserEntity WHERE email = :email LIMIT 1")
     fun findByEmail(email: String) : UserEntity
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg userEntities: UserEntity)
 
     @Update

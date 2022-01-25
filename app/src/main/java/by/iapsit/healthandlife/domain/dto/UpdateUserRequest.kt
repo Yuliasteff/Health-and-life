@@ -15,5 +15,6 @@ data class UpdateUserRequest(
     val email: String? = null,
     val heartRate: Int? = null,
     val saturation: Int? = null,
-    val temperature: Double? = null
+    val temperature: Double? = null,
+    val medications: String? = null
 )

@@ -20,8 +20,9 @@ object PredefinedUsers {
             phoneNumber = "+375111234567",
             heartRate = 0,
             saturation = 0,
-            temperature = 0.0
-            )
+            temperature = 0.0,
+            medications = "data"
+        )
     )
 
 }

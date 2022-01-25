@@ -13,11 +13,11 @@ import retrofit2.http.POST
 interface ApiAuthenticationService {
 
     @POST(Constants.LOGIN_URL)
-    @Headers("Content-type: application/json;charset=UTF-8")
+    @Headers("Content-type: application/json")
     fun login(@Body authRequest: AuthenticationRequest): Call<AuthenticationResponse>
 
     @POST(Constants.REGISTRATION_URL)
-    @Headers("Content-type: application/json;charset=UTF-8")
+    @Headers("Content-type: application/json")
     fun registration(@Body registrationRequest: RegistrationRequest): Call<User>
 
 }

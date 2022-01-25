@@ -17,6 +17,7 @@ data class UserEntity constructor(
     @ColumnInfo(name = "weight") val weight: Int?,
     @ColumnInfo(name = "phone_number") val phoneNumber: String?,
     @ColumnInfo(name = "email") val email: String?,
+    @ColumnInfo(name = "medications") val medications: String?,
     @ColumnInfo(name = "heart_rate") val heartRate: Int?,
     @ColumnInfo(name = "saturation") val saturation: Int?,
     @ColumnInfo(name = "temperature") val temperature: Double?

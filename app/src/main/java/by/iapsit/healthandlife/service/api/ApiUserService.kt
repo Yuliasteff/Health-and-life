@@ -8,12 +8,12 @@ import retrofit2.http.*
 
 interface ApiUserService {
 
-    @PUT(Constants.USERS_URL)
-    @Headers("Content-type: application/json; charset=UTF-8")
+    @PATCH(Constants.USERS_URL)
+    @Headers("Content-type: application/json")
     fun updateUser(@Header("Authorization") authHeader: String, @Body updateRequest: UpdateUserRequest): Call<User>
 
     @GET(Constants.USERS_URL)
-    @Headers("Content-type: application/json; charset=UTF-8")
+    @Headers("Content-type: application/json")
     fun getUser(@Header("Authorization") authHeader: String, @Query("email") userEmail: String) : Call<User>
 
 }

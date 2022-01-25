@@ -86,7 +86,7 @@ class LoginFragment : Fragment() {
 
                 override fun onFailure(call: Call<AuthenticationResponse>, t: Throwable) {
                     Log.e("Api call error", t.localizedMessage.toString())
-                    Toast.makeText(requireContext(), AUTH_ERROR_MESSAGE, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), t.localizedMessage, Toast.LENGTH_LONG).show()
                 }
             })
 
